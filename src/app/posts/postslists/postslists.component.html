@@ -1,0 +1,41 @@
+<h1 class="mt-5">Listado de Posts</h1>
+<hr>
+
+
+<input type="text"
+    class="form-control mb-2"
+    placeholder="Buscar"
+    #txtSearch
+    (keyup)="onSearch( txtSearch.value )"/>
+
+<button class="btn btn-primary"
+    (click)="prevPage()">
+    Anteriores
+</button>
+&nbsp;
+<button class="btn btn-primary"
+    (click)="nextPage()"
+    [disabled]="(lastPosts2 | filtro:page:search).length === 0">
+    Siguientes
+</button>
+
+
+<table class="table">
+    <thead class="">
+        <tr>
+            <th>Autor</th>
+            <th>Correo</th>
+            <th>Title</th>
+            <th>Body</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let post of lastPosts2 | filtro:page:search">
+         
+            <th scope="row">{{post.user.name}}</th>
+            <td>{{post.user.email}}</td>
+            <td>{{post.title}}</td>
+            <td>{{post.body}}</td>
+          </tr>
+    </tbody>
+</table>
